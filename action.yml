@@ -1,6 +1,7 @@
-name: 'prettier-format-suggestion'
+name: 'Prettier Format Suggestion'
 description: 'This action will report any prettier format issue and propose you, if you want to fix them, to us configured triggers to do that automatically'
 author: 'takanome-dev'
+
 # TODO: update this
 branding:
   icon: 'activity'
@@ -15,4 +16,45 @@ inputs:
     required: true
   trigger:
     description: The comment that triggers the action
-    default: yes
+    default: 'yes'
+  # files to format
+  files:
+    description: 'Files to format'
+    default: 'src/**/*.{js,jsx,ts,tsx,css,scss,md}'
+  # label to add to the PR to indicate that it has not been formatted
+  label:
+    description: 'Label to add to the PR to indicate that it has not been formatted'
+    default: '🚨 Prettier Format'
+  pr_body:
+    description: PullRequest body.
+    required: false
+    # we gonna use Mustache template to render this: {{ ... }}
+    default: |
+      ## :warning: Prettier Format Suggestion :warning:
+
+      This PR is a suggestion to format your code using [Prettier](https://prettier.io/).
+      There are some files that are not formatted correctly, so I suggest you to use Prettier to format them.
+
+      Currently, the following files are not formatted correctly:
+
+      {{#files}}
+      - {{.}}
+      {{/files}}
+
+      If you want to format them, check the box below and a commit will be added to this PR with the formatted files.
+
+      - [ ] I want to format the files
+
+
+      <details>
+      <summary>Click here to see the formatted files</summary>
+
+      {{#formattedFiles}}
+      - {{.}}
+      {{/formattedFiles}}
+
+      </details>      
+
+      <hr>
+
+      [:octocat: Repo](${ACTION_URL}) | [:memo: Issues](${ACTION_URL}/issues) | [:department_store: Marketplace](${ACTION_MARKETPLACE_URL})
