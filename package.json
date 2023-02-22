@@ -1,33 +1,40 @@
 {
-  "name": "typescript-action",
-  "version": "0.0.0",
+  "name": "@takanome-dev/format-suggestion-action",
+  "version": "0.0.1",
   "private": true,
-  "description": "TypeScript template action",
+  "description": "This github actions will comment on pull request for prettier format suggestion and/or eslint error fix suggestion",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write '**/*.ts'",
     "format-check": "prettier --check '**/*.ts'",
-    "lint": "eslint src/**/*.ts",
+    "lint": "eslint src/**/*.ts --report-unused-disable-directives",
     "package": "ncc build --source-map --license licenses.txt",
     "test": "jest",
     "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
   },
+  "homepage": "https://github.com/takanome-dev/prettier-format-suggestion",
+  "bugs": {
+    "url": "https://github.com/takanome-dev/prettier-format-suggestion/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/takanome-dev/prettier-format-suggestion.git"
   },
   "keywords": [
     "actions",
-    "node",
-    "setup"
+    "prettier",
+    "format"
   ],
-  "author": "",
+  "author": "TAKANOME-DEV",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.10.0"
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1",
+    "mustache": "^4.2.0"
   },
   "devDependencies": {
+    "@types/mustache": "^4.2.2",
     "@types/node": "^18.14.0",
     "@typescript-eslint/parser": "^4.33.0",
     "@vercel/ncc": "^0.36.1",
