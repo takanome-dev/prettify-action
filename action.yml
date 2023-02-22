@@ -1,11 +1,18 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
-inputs:
-  milliseconds: # change this
-    required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+name: 'prettier-format-suggestion'
+description: 'This action will report any prettier format issue and propose you, if you want to fix them, to us configured triggers to do that automatically'
+author: 'takanome-dev'
+# TODO: update this
+branding:
+  icon: 'activity'
+  color: 'white'
 runs:
   using: 'node16'
   main: 'dist/index.js'
+
+inputs:
+  github_token:
+    default: ${{ github.token }}
+    required: true
+  trigger:
+    description: The comment that triggers the action
+    default: yes
