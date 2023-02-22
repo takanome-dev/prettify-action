@@ -127,7 +127,6 @@ function run() {
                 files: filesToFormatString.join('\n'),
                 formattedFiles: filesToFormatString.join('\n')
             });
-            // # we gonna use Mustache template to render this: {{ ... }}
             // default: |
             //   ## :warning: Prettier Format Suggestion :warning:
             //   This PR is a suggestion to format your code using [Prettier](https://prettier.io/).
@@ -144,9 +143,6 @@ function run() {
             //   - {{.}}
             //   {{/formattedFiles}}
             //   </details>
-            // the comment above is how it looks like in the PR.
-            // replace the {{#files}} with the list of files that need to be formatted
-            // replace the {{#formattedFiles}} with the list of files that are formatted
             yield client.rest.issues.createComment({
                 owner: github.context.repo.owner,
                 repo: github.context.repo.repo,

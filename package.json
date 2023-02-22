@@ -1,5 +1,5 @@
 {
-  "name": "@takanome-dev/format-suggestion-action",
+  "name": "@takanome-dev/prettify-action",
   "version": "0.0.1",
   "private": true,
   "description": "This github actions will comment on pull request for prettier format suggestion and/or eslint error fix suggestion",
@@ -13,13 +13,13 @@
     "test": "jest",
     "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
   },
-  "homepage": "https://github.com/takanome-dev/prettier-format-suggestion",
+  "homepage": "https://github.com/takanome-dev/prettify-action",
   "bugs": {
-    "url": "https://github.com/takanome-dev/prettier-format-suggestion/issues"
+    "url": "https://github.com/takanome-dev/prettify-action/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/takanome-dev/prettier-format-suggestion.git"
+    "url": "git+https://github.com/takanome-dev/prettify-action.git"
   },
   "keywords": [
     "actions",

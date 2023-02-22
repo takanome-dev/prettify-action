@@ -1,6 +1,6 @@
-name: 'Prettier Format Suggestion'
-description: 'This action will report any prettier format issue and propose you, if you want to fix them, to us configured triggers to do that automatically'
-author: 'takanome-dev'
+name: Prettify Action
+description: ' GitHub action that suggests formatting changes with Prettier on pull requests, making it easier to maintain consistent code style and readability '
+author: 'TAKANOME-DEV'
 
 # TODO: update this
 branding:
@@ -17,18 +17,15 @@ inputs:
   trigger:
     description: The comment that triggers the action
     default: 'yes'
-  # files to format
   files:
     description: 'Files to format'
-    default: 'src/**/*.{js,jsx,ts,tsx,css,scss,md}'
-  # label to add to the PR to indicate that it has not been formatted
+    default: 'js,jsx,ts,tsx,css,scss,md'
   label:
     description: 'Label to add to the PR to indicate that it has not been formatted'
     default: '🚨 Prettier Format'
   pr_body:
     description: PullRequest body.
     required: false
-    # we gonna use Mustache template to render this: {{ ... }}
     default: |
       ## :warning: Prettier Format Suggestion :warning:
 

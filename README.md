@@ -1,105 +1,59 @@
+<h2 align="center">🧹 Prettify Action ✨</h2>
+
 <p align="center">
-  <a href="https://github.com/actions/typescript-action/actions"><img alt="typescript-action status" src="https://github.com/actions/typescript-action/workflows/build-test/badge.svg"></a>
+  <a href="https://github.com/TAKANOME-DEV/prettify-action">
+    <img alt="Licence Badge" src="https://img.shields.io/github/license/TAKANOME-DEV/prettify-action?color=%2330C151" />
+  </a>
+  <a href="https://github.com/TAKANOME-DEV/prettify-action">
+    <img alt="Licence Badge" src="https://img.shields.io/github/release/TAKANOME-DEV/prettify-action?color=%2330C151">
+  </a>
 </p>
 
-# Create a JavaScript Action using TypeScript
+---
 
-Use this template to bootstrap the creation of a TypeScript action.:rocket:
+:robot: A GitHub action that suggests formatting changes with Prettier on pull requests, making it easier to maintain consistent code style sparkles and readability :sparkles: :rocket:
 
-This template includes compilation support, tests, a validation workflow, publishing, and versioning guidance.  
+The initial idea for this action was taken from [JoshuaKGoldberg/template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package/issues/139) opened by @JoshuaKGoldberg. We wanted to make it easier for non-coding contributors to contribute to open source projects, and we thought that this would be a great way to do it.
 
-If you are new, there's also a simpler introduction.  See the [Hello World JavaScript Action](https://github.com/actions/hello-world-javascript-action)
+## :construction: Status
 
-## Create an action from this template
+This action is currently _early_ in the development cycle. This action is not yet functional but is being actively developed. Please "watch" the project and leave a star and help us build this action.
+We welcome contributions of all sizes, from small bug fixes to new features, ideas, and suggestions.
 
-Click the `Use this Template` and provide the new repo details for your action
+## :bulb: Motivation
 
-## Code in Main
+This GitHub action was created to streamline the contribution process for non-coding contributors. We understand that running formatting checks and pushing changes can be tedious, and we want to make it easier for everyone to contribute to open source projects. By using this action, contributors can focus on the content of their contributions, while we take care of the formatting. With automatic suggestions for Prettier formatting changes, we can help maintain consistent code style and readability, without adding extra work for contributors.
 
-> First, you'll need to have a reasonably modern version of `node` handy. This won't work with versions older than 9, for instance.
+## :rocket: Usage
 
-Install the dependencies  
-```bash
-$ npm install
-```
+### :zap: Quick Start
 
-Build the typescript and package it for distribution
-```bash
-$ npm run build && npm run package
-```
-
-Run the tests :heavy_check_mark:  
-```bash
-$ npm test
-
- PASS  ./index.test.js
-  ✓ throws invalid number (3ms)
-  ✓ wait 500 ms (504ms)
-  ✓ test runs (95ms)
-
-...
-```
-
-## Change action.yml
-
-The action.yml defines the inputs and output for your action.
-
-Update the action.yml with your name, description, inputs and outputs for your action.
-
-See the [documentation](https://help.github.com/en/articles/metadata-syntax-for-github-actions)
-
-## Change the Code
-
-Most toolkit and CI/CD operations involve async operations so the action is run in an async function.
-
-```javascript
-import * as core from '@actions/core';
-...
-
-async function run() {
-  try { 
-      ...
-  } 
-  catch (error) {
-    core.setFailed(error.message);
-  }
-}
-
-run()
-```
-
-See the [toolkit documentation](https://github.com/actions/toolkit/blob/master/README.md#packages) for the various packages.
-
-## Publish to a distribution branch
-
-Actions are run from GitHub repos so we will checkin the packed dist folder. 
-
-Then run [ncc](https://github.com/zeit/ncc) and push the results:
-```bash
-$ npm run package
-$ git add dist
-$ git commit -a -m "prod dependencies"
-$ git push origin releases/v1
-```
-
-Note: We recommend using the `--license` option for ncc, which will create a license file for all of the production node modules used in your project.
-
-Your action is now published! :rocket: 
-
-See the [versioning documentation](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md)
-
-## Validate
-
-You can now validate the action by referencing `./` in a workflow in your repo (see [test.yml](.github/workflows/test.yml))
+1. Create a new workflow file in your repository at `.github/workflows/prettify.yml` with the following contents:
 
 ```yaml
-uses: ./
-with:
-  milliseconds: 1000
+name: Prettify Action
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  prettify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          fetch-depth: 0
+
+      - name: Prettify
+        uses: takanome-dev/prettify-action@beta
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-See the [actions tab](https://github.com/actions/typescript-action/actions) for runs of this action! :rocket:
+## ⚖️ License
 
-## Usage:
-
-After testing you can [create a v1 tag](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md) to reference the stable and latest V1 action
+The scripts and documentation in this project are released under the [MIT License](LICENSE)
