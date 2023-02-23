@@ -17,8 +17,9 @@ The initial idea for this action was taken from [JoshuaKGoldberg/template-typesc
 
 ## :construction: Status
 
-This action is currently _early_ in the development cycle. This action is not yet functional but is being actively developed. Please "watch" the project and leave a star and help us build this action.
-We welcome contributions of all sizes, from small bug fixes to new features, ideas, and suggestions.
+~~This action is currently _early_ in the development cycle. This action is not yet functional but is being actively developed. Please "watch" the project and leave a star and help us build this action.
+We welcome contributions of all sizes, from small bug fixes to new features, ideas, and suggestions.~~
+#### 🚨 Turns out that there is an action that does the same thing :sweat_smile: Check it out at [reviewdog-action-prettier](https://github.com/EPMatt/reviewdog-action-prettier) 🚨
 
 ## :bulb: Motivation
 
